@@ -8,14 +8,6 @@ In this lab, you will learn to deploy a Node.js app to Azure App Service and set
 
 With **GitHub Actions** you can build end-to-end continuous integration (CI) and continuous deployment (CD) capabilities directly in your repository. 
 
-### What’s covered in this lab
-In this lab, you will:
-
-1. How to set up a workflow with GitHub Actions 
-
-1. Create a workflow with GitHub Actions to add CI/CD to your Node.Js web app
-
-
 ### Prerequisites
 
 1. You will need a **GitHub** account. If you do not have one, you can sign up for free [here](https://github.com/join)
@@ -33,20 +25,24 @@ In this lab, you will:
 
 ## Create an Azure App Service
 
-Let's create this as a web app hosted in Azure. 
+Let's create this as a web app hosted in Azure with **Linux** as your OS and **Node** as your runtime. 
 
-1. Follow the tutorial [Azure Web Apps Quickstart](https://docs.microsoft.com/en-us/azure/app-service/app-service-web-get-started-nodejs) 
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-webapp-linux-node%2Fazuredeploy.json" target="_blank">
+    <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png"/>
+</a>
+<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-webapp-linux-node%2Fazuredeploy.json" target="_blank">
+    <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.png"/>
+</a>
 
-1. Click on the `+` icon to create a new app service under your subscription.
+This template deploys a web app with Node support to let us upload a Node-based app. The web app with Node is an app service that allows you to deploy your Node website. This will deploy a free tier Linux App Service Plan where you will host your app service.
 
-   ![](../assets/images/create-app-service.png)
+If you are new to Azure App Service, see:
 
+- [Azure App Service](https://azure.microsoft.com/services/app-service/web/)
+- [Template reference](https://docs.microsoft.com/azure/templates/microsoft.web/allversions)
+- [Quickstart templates](https://azure.microsoft.com/resources/templates/?resourceType=Microsoft.Compute&pageNumber=1&sort=Popular&term=web+apps)
 
-1. Give your webapp a unique name
-
-1. Select **Linux** as your OS and **Node** as your runtime. 
-
-1. Browse to your new site! 
+Browse to your new site! 
 
 ## Set up CI/CD with GitHub Actions 
 
