@@ -50,27 +50,27 @@ We'll use GitHub actions to automate our deployment workflow for this web app.
 
 1. In the portal, Overview page, click on "Get publish profile". A publish profile is a kind of deployment credential, useful when you don't own the Azure subscription. Open the downloaded settings file in VS Code and copy the contents of the file.
 
-   ![](../assets/images/get-publish-profile.png)
+   ![](https://github.com/Azure/actions-workflow-samples/blob/master/assets/images/get-publish-profile.png)
 
 
 1. We will now add the publish profile as a secret associated with this repo. On the GitHub repository, click on the "Settings" tab.
 
-   ![](../assets/images/github-settings.png)
+   ![](https://github.com/Azure/actions-workflow-samples/blob/master/assets/images/github-settings.png)
 
 
 1. Go to "Secrets". Create a new secret called "AZURE_WEBAPP_PUBLISH_PROFILE" and paste the contents from the settings file.
 
-   ![](../assets/images/create-secret.png)
+   ![](https://github.com/Azure/actions-workflow-samples/blob/master/assets/images/create-secret.png)
 
 
 1. Now click on "Actions" in the top bar and create a new workflow. 
 
-   ![](../assets/images/new-action.png)
+   ![](https://github.com/Azure/actions-workflow-samples/blob/master/assets/images/new-action.png)
 
 
 1. Find the **Deploy Node.js to Azure Web App** template and select "Set up this workflow" which creates a new `workflow.yml` file in your repo under `.github/workflows/` folder path
 
-   ![](../assets/images/node-action.png)
+   ![](https://github.com/Azure/actions-workflow-samples/blob/master/assets/images/node-action.png)
 
 
 1. Let's get into the details of what this workflow is doing.
@@ -146,13 +146,13 @@ build-and-deploy:
 
    **For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples **
 
-   ![](../assets/images/add-yaml.png)
+   ![](https://github.com/Azure/actions-workflow-samples/blob/master/assets/images/add-yaml.png)
 
 - Once you're done editing the workflow by configuring the AZURE_WEBAPP_NAME, click on "Start commit". Committing the file will trigger the workflow.
 
 - You can go back to the Actions tab, click on your workflow, and see that the workflow is queued or being deployed. Wait for the job to complete successfully.
 
-   ![](../assets/images/workflow-complete.png)
+   ![](https://github.com/Azure/actions-workflow-samples/blob/master/assets/images/workflow-complete.png)
 
 ## Test out your app!
 
