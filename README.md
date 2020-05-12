@@ -6,7 +6,6 @@ products:
 - Azure App service
 languages:
 - Node Javascript
-urlFragment: https://github.com/chrisdias/theCatSaidNo
 ---
 
 # Deploying a Node.js Web App using GitHub actions
