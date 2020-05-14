@@ -1,0 +1,16 @@
+apiVersion : apps/v1beta1
+kind: Deployment
+metadata:
+  name: gopinathchnodeexpressapp 
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: gopinathchnodeexpressapp 
+    spec:
+      containers:
+        - name: gopinathchnodeexpressapp 
+          image: ashkiracr.azurecr.io/gopinathchnodeexpressapp
+          ports:
+          - containerPort: 80
