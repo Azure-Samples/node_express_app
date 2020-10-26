@@ -10,7 +10,7 @@
 on:
   push:
     branches:
-      - master
+      - starter-app
 
 env:
   AZURE_WEBAPP_NAME: nodeappgh   # set this to your application's name

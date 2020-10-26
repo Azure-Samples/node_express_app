@@ -1,5 +1,8 @@
 name: workflow to deploy an ARM Template to a resource group
-on: push
+on: 
+  push:
+    branches:
+      - starter-app
 
 # CONFIGURATION
 # For help, go to https://github.com/Azure/Actions
