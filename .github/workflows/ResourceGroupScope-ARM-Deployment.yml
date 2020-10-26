@@ -2,14 +2,16 @@ name: workflow to deploy an ARM Template to a resource group
 on: 
   push:
     branches:
-      - starter-app
+    - starter-app
+    paths:
+    - 'ARM/**'
 
 # CONFIGURATION
 # For help, go to https://github.com/Azure/Actions
 
 env:
-  AZURE_RESOURCE_GROUP: << Azure Resource Group >>   # set this to your Azure Resource group's name  
-  AZURE_SUBSCRIPTION_ID: << Subscription Id >>   # set this to your Azure Subscription Id
+  AZURE_RESOURCE_GROUP: gh-accelerator   # set this to your Azure Resource group's name  
+  AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID  }}  # set this to your Azure Subscription Id
   
 jobs:
   build-and-deploy-to-dev:
@@ -35,5 +37,5 @@ jobs:
         # You can change these environment variables for your configuration:   AZURE_SUBSCRIPTION_ID, AZURE_RESOURCE_GROUP
         subscriptionId: ${{ env.AZURE_SUBSCRIPTION_ID }}
         resourceGroupName: ${{ env.AZURE_RESOURCE_GROUP }}
-        template: $GITHUB_WORKSPACE/azuredeploy.json  # Set this to the location of your template file
-        parameters: $GITHUB_WORKSPACE/azuredeploy.parameters.json # Set this to the location of your parameters file
+        template: $GITHUB_WORKSPACE/ARM/azuredeploy.json  # Set this to the location of your template file
+        parameters: $GITHUB_WORKSPACE/ARM/azuredeploy.parameters.json # Set this to the location of your parameters file

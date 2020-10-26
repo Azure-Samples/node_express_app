@@ -6,7 +6,9 @@ name: scan-subscription
 on: 
   push:
     branches:
-      - starter-app
+    - starter-app
+    paths:
+    - 'Policy/**'
 
 jobs:
   assess-policy-compliance:    
@@ -22,5 +24,5 @@ jobs:
       uses: azure/policy-compliance-scan@v0
       with:
         scopes: |
-          /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+          /subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}
         
