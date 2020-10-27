@@ -1,4 +1,4 @@
-# Deploy a Node app service to Azure
+# Deploy a Node app service
 
 ## Create a a new Node webapp in Azure using GH Action workflows
 
