@@ -6,7 +6,7 @@ The purpose of this sample app is to **deploy a web app with Node** using an **A
 1. Configure Azure credentials, Azure subscription ID as repo secrets
 1. Trigger GitHub Action workflows to:
     - provision Azure resources
-    - deploy App code
+    - deploy App code to Azure
 
 ## Overview
 
