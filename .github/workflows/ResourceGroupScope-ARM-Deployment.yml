@@ -2,7 +2,7 @@ name: workflow to deploy an ARM Template to a resource group
 on: 
   push:
     branches:
-    - starter-app
+    - [ $default-branch ]
     paths:
     - 'ARM/**'
 

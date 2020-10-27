@@ -10,7 +10,7 @@
 on:
   push:
     branches:
-    - starter-app
+    - [ $default-branch ]
     paths-ignore:
     - 'ARM/**'
     - 'policies/**'
