@@ -5,7 +5,8 @@
 name: scan-subscription
 on: 
   push:
-    branches: [ $default-branch ]
+    branches:    
+    - master
     paths:
     - 'Policies/**'
 
