@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "webappname": {
-            "value": "node-gh-app"
+            "value": "node-gh-app1"
         },
         "location": {
             "value": "East US"
