@@ -9,10 +9,11 @@
 
 on:
   push:
-    branches: [ $default-branch ]
+    branches: 
+      - master
     paths-ignore:
-    - 'ARM/**'
-    - 'policies/**'
+      - 'ARM/**'
+      - 'policies/**'
 
 env:
   AZURE_WEBAPP_NAME: ${{ secrets.AZURE_WEBAPP_NAME }}   # set this to your application's name
