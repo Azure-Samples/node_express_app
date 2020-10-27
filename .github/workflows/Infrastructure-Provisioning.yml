@@ -4,7 +4,7 @@ on:
     branches: 
       - master
     paths:
-      - 'ARM/**'
+      - 'infrastructure/**'
 
 # CONFIGURATION
 # For help, go to https://github.com/Azure/Actions
@@ -39,4 +39,4 @@ jobs:
         subscriptionId: ${{ env.AZURE_SUBSCRIPTION_ID }}
         resourceGroupName: ${{ env.AZURE_RESOURCE_GROUP }}
         template: ARM/azuredeploy.json  # Set this to the location of your template file
-        parameters: ARM/azuredeploy.parameters.json webappname=${{ env.AZURE_WEBAPP_NAME }}
+        parameters: ARM/azuredeploy.parameters.json webappname=${{ env.AZURE_WEBAPP_NAME }} subscriptionId=${{ env.AZURE_SUBSCRIPTION_ID }} 

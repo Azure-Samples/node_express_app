@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "subscriptionId": {
-            "value": "afc11291-9826-46be-b852-70349146ddf8"
+            "value": "GEN-UNIQUE-10"
         },
         "webappname": {
-            "value": "node-gh-app1"
+            "value": "GEN-UNIQUE-10"
         },
         "location": {
             "value": "East US"

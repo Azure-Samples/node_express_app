@@ -6,13 +6,16 @@
             "type": "String"
         },
         "webappname": {
-            "type": "String"
+            "type": "String",
+            "defaultValue": "[concat('Node-', uniqueString(resourceGroup().name, utcNow('F')))]"
         },
         "location": {
-            "type": "String"
+            "type": "String",
+            "defaultValue": "[resourceGroup().location]"
         },
         "hostingPlanName": {
-            "type": "String"
+            "type": "String",
+            "defaultValue": "[concat('gha-', resourceGroup().name)]"
         },
         "serverFarmResourceGroup": {
             "type": "String"
