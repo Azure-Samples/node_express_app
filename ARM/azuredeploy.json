@@ -1,66 +1,80 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "webAppName": {
-            "type": "string",
-            "defaultValue": "[concat('Node-', uniqueString(resourceGroup().name, utcNow('F')))]",
-            "metadata": {
-                "description": "That name is the name of our application. It has to be unique.Type a name followed by your resource group name. (<name>-<resourceGroupName>)"
-            }
+        "subscriptionId": {
+            "type": "String"
+        },
+        "name": {
+            "type": "String"
         },
         "location": {
-            "type": "string",
-            "defaultValue": "[resourceGroup().location]",
-            "metadata": {
-                "description": "Location for all resources."
-            }
+            "type": "String"
+        },
+        "hostingPlanName": {
+            "type": "String"
+        },
+        "serverFarmResourceGroup": {
+            "type": "String"
+        },
+        "alwaysOn": {
+            "type": "Bool"
+        },
+        "sku": {
+            "type": "String"
+        },
+        "skuCode": {
+            "type": "String"
+        },
+        "workerSize": {
+            "type": "String"
+        },
+        "workerSizeId": {
+            "type": "String"
+        },
+        "numberOfWorkers": {
+            "type": "String"
+        },
+        "linuxFxVersion": {
+            "type": "String"
         }
-    },
-    "variables": {
-        "alwaysOn": false,
-        "sku": "Free",
-        "skuCode": "F1",
-        "workerSize": "0",
-        "workerSizeId": "0",
-        "numberOfWorkers": "1",
-        "linuxFxVersion": "NODE|lts",
-        "hostingPlanName": "[concat('hpn-', resourceGroup().name)]"
     },
     "resources": [
         {
-            "apiVersion": "2020-06-01",
-            "name": "[parameters('webAppName')]",
             "type": "Microsoft.Web/sites",
+            "apiVersion": "2018-11-01",
+            "name": "[parameters('name')]",
             "location": "[parameters('location')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms/', variables('hostingPlanName'))]"
+                "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
             ],
             "properties": {
-                "name": "[parameters('webAppName')]",
+                "name": "[parameters('name')]",
                 "siteConfig": {
-                    "linuxFxVersion": "[variables('linuxFxVersion')]",
-                    "alwaysOn": "[variables('alwaysOn')]"
+                    "appSettings": [],
+                    "linuxFxVersion": "[parameters('linuxFxVersion')]",
+                    "alwaysOn": "[parameters('alwaysOn')]"
                 },
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+                "serverFarmId": "[concat('/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
                 "clientAffinityEnabled": false
             }
         },
         {
-            "apiVersion": "2020-06-01",
-            "name": "[variables('hostingPlanName')]",
             "type": "Microsoft.Web/serverfarms",
+            "apiVersion": "2018-11-01",
+            "name": "[parameters('hostingPlanName')]",
             "location": "[parameters('location')]",
-            "kind": "linux",
+            "dependsOn": [],
             "sku": {
-                "Tier": "[variables('sku')]",
-                "Name": "[variables('skuCode')]"
+                "Tier": "[parameters('sku')]",
+                "Name": "[parameters('skuCode')]"
             },
+            "kind": "linux",
             "properties": {
-                "name": "[variables('hostingPlanName')]",
-                "workerSize": "[variables('workerSize')]",
-                "workerSizeId": "[variables('workerSizeId')]",
-                "numberOfWorkers": "[variables('numberOfWorkers')]",
+                "name": "[parameters('hostingPlanName')]",
+                "workerSize": "[parameters('workerSize')]",
+                "workerSizeId": "[parameters('workerSizeId')]",
+                "numberOfWorkers": "[parameters('numberOfWorkers')]",
                 "reserved": true
             }
         }
