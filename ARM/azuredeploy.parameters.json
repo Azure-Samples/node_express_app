@@ -5,7 +5,7 @@
         "subscriptionId": {
             "value": "afc11291-9826-46be-b852-70349146ddf8"
         },
-        "name": {
+        "webappname": {
             "value": "node-gh-app"
         },
         "location": {
