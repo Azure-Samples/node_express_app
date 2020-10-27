@@ -49,7 +49,7 @@
                 "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
             ],
             "properties": {
-                "name": "[parameters('name')]",
+                "name": "[parameters('webappname')]",
                 "siteConfig": {
                     "appSettings": [],
                     "linuxFxVersion": "[parameters('linuxFxVersion')]",
