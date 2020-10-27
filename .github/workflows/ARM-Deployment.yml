@@ -38,4 +38,4 @@ jobs:
         subscriptionId: ${{ env.AZURE_SUBSCRIPTION_ID }}
         resourceGroupName: ${{ env.AZURE_RESOURCE_GROUP }}
         template: ARM/azuredeploy.json  # Set this to the location of your template file
-        parameters: ARM/azuredeploy.parameters.json webAppName=${{ secrets.AZURE_WEBAPP_NAME }}-overriden
+        parameters: ARM/azuredeploy.parameters.json name=${{ secrets.AZURE_WEBAPP_NAME }}-overriden
