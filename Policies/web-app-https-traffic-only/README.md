@@ -1,6 +1,6 @@
 # Enforce https traffic for all Web Apps
 
-This policy ensures that only https traffic is allowed on all Azure Web Apps
+This policy ensures that only https traffic is allowed on all Web Apps
 
 ## Try on Portal
 
