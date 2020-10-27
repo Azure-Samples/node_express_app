@@ -37,5 +37,5 @@ jobs:
         # You can change these environment variables for your configuration:   AZURE_SUBSCRIPTION_ID, AZURE_RESOURCE_GROUP
         subscriptionId: ${{ env.AZURE_SUBSCRIPTION_ID }}
         resourceGroupName: ${{ env.AZURE_RESOURCE_GROUP }}
-        template: $GITHUB_WORKSPACE/ARM/azuredeploy.json  # Set this to the location of your template file
-        parameters: $GITHUB_WORKSPACE/ARM/azuredeploy.parameters.json webAppName=${{ secrets.AZURE_WEBAPP_NAME }}-overriden
+        template: ARM/azuredeploy.json  # Set this to the location of your template file
+        parameters: ARM/azuredeploy.parameters.json webAppName=${{ secrets.AZURE_WEBAPP_NAME }}-overriden
