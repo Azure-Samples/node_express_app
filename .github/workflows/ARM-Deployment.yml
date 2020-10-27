@@ -3,7 +3,7 @@ on:
   push:
     branches: [ $default-branch ]
     paths:
-    - 'ARM/**'
+      - 'ARM/**'
 
 # CONFIGURATION
 # For help, go to https://github.com/Azure/Actions
