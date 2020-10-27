@@ -12,6 +12,7 @@ on:
 env:
   AZURE_RESOURCE_GROUP: gh-accelerator   # set this to your Azure Resource group's name  
   AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID  }}  # set this to your Azure Subscription Id
+  AZURE_WEBAPP_NAME: node-gh-accelerator # set this to your Azure Web App's name  
   
 jobs:
   build-and-deploy-to-dev:
