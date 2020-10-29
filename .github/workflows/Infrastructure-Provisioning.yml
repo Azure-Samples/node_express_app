@@ -11,7 +11,6 @@ on:
 
 env:
   AZURE_RESOURCE_GROUP: gh-accelerator   # set this to your Azure Resource group's name  
-  AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID  }}  # set this to your Azure Subscription Id
   AZURE_WEBAPP_NAME: node-gh-accelerator # set this to your Azure Web App's name  
   
 jobs:
@@ -36,7 +35,7 @@ jobs:
       uses: azure/arm-deploy@v1
       with:
         # You can change these environment variables for your configuration:   AZURE_SUBSCRIPTION_ID, AZURE_RESOURCE_GROUP
-        subscriptionId: ${{ env.AZURE_SUBSCRIPTION_ID }}
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         resourceGroupName: ${{ env.AZURE_RESOURCE_GROUP }}
         template: infrastructure/azuredeploy.json  # Set this to the location of your template file
-        parameters: infrastructure/azuredeploy.parameters.json webappname=${{ env.AZURE_WEBAPP_NAME }} subscriptionId=${{ env.AZURE_SUBSCRIPTION_ID }} 
+        parameters: infrastructure/azuredeploy.parameters.json webappname=${{ env.AZURE_WEBAPP_NAME }} subscriptionId=${{ secrets.AZURE_SUBSCRIPTION_ID }} 
