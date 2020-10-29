@@ -33,6 +33,7 @@ jobs:
     # Build and test the project
     - name: npm install, build, and test
       run: |
+        cd application
         npm install
         npm run build --if-present
         npm run test --if-present
