@@ -104,7 +104,7 @@ jobs:
       run: |
         cd application
         npm install
-        cd ../Tests
+        cd ../tests
         npm install
         $Path = $env:TEMP; $Installer = "chrome_installer.exe"; Invoke-WebRequest "https://dl.google.com/chrome/install/latest/chrome_installer.exe" -OutFile $Path$Installer; Start-Process -FilePath $Path$Installer -Args "/silent /install" -Verb RunAs -Wait; Remove-Item $Path$Installer
         Invoke-WebRequest https://chromedriver.storage.googleapis.com/83.0.4103.39/chromedriver_win32.zip -outFile chromedriver.zip
