@@ -4,12 +4,13 @@ The purpose of this sample app is to **deploy a web app with Node** using an **A
 
 1. Create a new GitHub repository into your GH Organization using this template 
 1. Configure AZURE_CREDENTIALS, AZURE_SUBSCRIPTION_ID and AZURE_WEBAPP_NAME as repo secrets
-1. Trigger GitHub Action workflows to:
+1. Trigger GitHub Action workflows:
     - provision Azure resources using ARM templates and manage your Infrastructure as code
     - build and deploy App code to Azure webapp
     - apply and manage Azure Policies as code
+    - PR workflow : provision a review app, build and deploy App code to review app
    
-   By making changes to the templates inside the folders of infrastructure,  policies, corresponding workflows could be triggered.
+   By making changes to the templates inside the folders of infrastructure,  policies, corresponding workflows could be triggered. By raisig a pull request, the PR workflow could be triggered.
 
 # Standardize this as a new repo template within your GitHub organization
 
