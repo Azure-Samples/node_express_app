@@ -61,19 +61,19 @@ jobs:
         name: buildartifacts
         path: buildartifacts
     # Archive Arm templates
-    - name: Archive infrastructure ArmTemplates
+    - name: Archive infrastructure ARM Templates
       uses: montudor/action-zip@v0.1.0
       with:
         args: zip -qq -r ./infrastructuretemplates/infrastructure.zip ./infrastructure
     # Uploading Arm Templates to artifacts
-    - name: Upload Arm templates to Artifact
+    - name: Upload infrastructure ARM templates to Artifact
       continue-on-error: false
       uses: actions/upload-artifact@v2
       with:
         name: infrastructuretemplates
         path: infrastructuretemplates
   deploy:
-    name: Deploy to azure web app
+    name: Provision and Deploy to a review app
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -106,7 +106,7 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}} 
-    - name: Deploy ARM Template
+    - name: Provision a review web app
       uses: azure/arm-deploy@v1
       with:
         # You can change these environment variables for your configuration:   AZURE_SUBSCRIPTION_ID, AZURE_RESOURCE_GROUP
@@ -115,7 +115,7 @@ jobs:
         template: infrastructure/azuredeploy.json  # Set this to the location of your template file
         parameters: infrastructure/azuredeploy.parameters.json webappname=${{ env.AZURE_WEBAPP_NAME }} subscriptionId=${{ secrets.AZURE_SUBSCRIPTION_ID }}       
     # Deploy Node app to Azure
-    - name: 'Deploy to Azure WebApp'
+    - name: 'Deploy to Review WebApp'
       uses: azure/webapps-deploy@v2
       with: 
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
