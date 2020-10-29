@@ -8,16 +8,15 @@
 # For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
 
 on:
-  push:
+  pull:
     branches: 
       - master
     paths-ignore:
-      - 'infrastructure/**'
       - 'Policies/**'
 
 env:
-  AZURE_WEBAPP_NAME: node-gh-accelerator   # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: "application"      # set this to the path to your web app project, defaults to the repository root
+  AZURE_WEBAPP_NAME: node-gh-accelerator-pr   # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: "application"     # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: '10.x'                # set this to the node version to use
 
 jobs:
@@ -46,6 +45,7 @@ jobs:
     - name: Creating artifact directories
       run: |
         mkdir buildartifacts
+        mkdir infrastructuretemplates
     # Archive build artifact
     - name: Archive Application
       uses: montudor/action-zip@v0.1.0
@@ -58,6 +58,18 @@ jobs:
       with:
         name: buildartifacts
         path: buildartifacts
+    # Archive Arm templates
+    - name: Archive infrastructure ArmTemplates
+      uses: montudor/action-zip@v0.1.0
+      with:
+        args: zip -qq -r ./infrastructuretemplates/infrastructure.zip ./infrastructure
+    # Uploading Arm Templates to artifacts
+    - name: Upload Arm templates to Artifact
+      continue-on-error: false
+      uses: actions/upload-artifact@v2
+      with:
+        name: infrastructuretemplates
+        path: infrastructuretemplates
   deploy:
     name: Deploy to azure web app
     needs: build
@@ -75,11 +87,31 @@ jobs:
       uses: montudor/action-zip@v0.1.0
       with:
        args: unzip -qq ./buildartifacts/application.zip -d .
-  
+  # Downloading Arm Templates
+    - name: Download infrastructure templates
+      uses: actions/download-artifact@v2
+      continue-on-error: false
+      with:
+        name: infrastructuretemplates
+        path: infrastructuretemplates
+    # Uzipping Arm template directory
+    - name: unzipping infrastructure artifact
+      uses: montudor/action-zip@v0.1.0
+      with:
+       args: unzip -qq ./infrastructuretemplates/infrastructure.zip -d .
+    # Deploy Arm template
     - name: Login to Azure
       uses: azure/login@v1
       with:
-        creds: ${{secrets.AZURE_CREDENTIALS}}  
+        creds: ${{secrets.AZURE_CREDENTIALS}} 
+    - name: Deploy ARM Template
+      uses: azure/arm-deploy@v1
+      with:
+        # You can change these environment variables for your configuration:   AZURE_SUBSCRIPTION_ID, AZURE_RESOURCE_GROUP
+        subscriptionId: ${{ env.AZURE_SUBSCRIPTION_ID }}
+        resourceGroupName: ${{ env.AZURE_RESOURCE_GROUP }}
+        template: infrastructure/azuredeploy.json  # Set this to the location of your template file
+        parameters: infrastructure/azuredeploy.parameters.json webappname=${{ env.AZURE_WEBAPP_NAME }} subscriptionId=${{ env.AZURE_SUBSCRIPTION_ID }}       
     # Deploy Node app to Azure
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
