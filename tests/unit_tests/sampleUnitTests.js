@@ -1,5 +1,5 @@
 var assert = require('assert');
-var app = require('../../Application/app');
+var app = require('../../application/app');
 var http = require('http');
  
 describe('sampleUnitTests', function () {
